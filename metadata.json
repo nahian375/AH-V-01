@@ -1,0 +1,6 @@
+{
+  "name": "ASTRA Health",
+  "description": "Astronaut Health Intelligence System — Offline-First PWA for long-duration space missions with dual online Gemini and offline local AI engines.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

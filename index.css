@@ -1,0 +1,572 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --aerospace-bg: #030712;
+    --aerospace-surface: #0b1120;
+    --aerospace-surface-highlight: #111b30;
+    --aerospace-border: #1e293b;
+    --aerospace-cyan: #06b6d4;
+    --aerospace-teal: #14b8a6;
+    --aerospace-gold: #f59e0b;
+  }
+
+  html {
+    font-size: 16.5px;
+    font-feature-settings: "tnum", "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 17px;
+    }
+  }
+
+  body {
+    background-color: #020612;
+    color: #f1f5f9;
+    font-family: 'Inter', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-image: 
+      radial-gradient(ellipse at 50% 0%, rgba(6, 182, 212, 0.05) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(14, 116, 144, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 48px 48px;
+    background-attachment: fixed;
+  }
+
+  /* Monospace typography override for authentic flight telemetry */
+  code, kbd, samp, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  }
+
+  /* Custom subtle scrollbar for telemetry logs */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #060a12;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8;
+  }
+}
+
+/* =========================================================
+   AEROSPACE SPACE-ORIENTED COMMAND BUTTONS & THEME UTILITIES
+   ========================================================= */
+
+.radar-grid {
+  background-size: 28px 28px;
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 24px -4px rgba(6, 182, 212, 0.4);
+}
+
+.glow-amber {
+  box-shadow: 0 0 24px -4px rgba(245, 158, 11, 0.4);
+}
+
+.glow-rose {
+  box-shadow: 0 0 24px -4px rgba(244, 63, 94, 0.4);
+}
+
+/* Tactical Space Command Button (Primary Cyan) */
+.space-cmd-btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #0891b2 0%, #0e7490 100%);
+  color: #ffffff;
+  border: 1px solid #22d3ee;
+  border-top-color: #67e8f9;
+  border-bottom-color: #083344;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 0 14px -2px rgba(6, 182, 212, 0.45);
+  transition: all 0.15s ease-out;
+  cursor: pointer;
+  user-select: none;
+}
+.space-cmd-btn-primary:hover {
+  background: linear-gradient(180deg, #06b6d4 0%, #0891b2 100%);
+  border-color: #67e8f9;
+  box-shadow: 0 0 22px rgba(6, 182, 212, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+.space-cmd-btn-primary:active {
+  transform: translateY(1px);
+  background: #0e7490;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Tactical Space Command Button (Warning Amber) */
+.space-cmd-btn-amber {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #d97706 0%, #b45309 100%);
+  color: #020617;
+  border: 1px solid #fbbf24;
+  border-top-color: #fde68a;
+  border-bottom-color: #451a03;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 0 14px -2px rgba(245, 158, 11, 0.5);
+  transition: all 0.15s ease-out;
+  cursor: pointer;
+  user-select: none;
+}
+.space-cmd-btn-amber:hover {
+  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+  border-color: #fde68a;
+  box-shadow: 0 0 22px rgba(245, 158, 11, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+.space-cmd-btn-amber:active {
+  transform: translateY(1px);
+  background: #92400e;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Tactical Space Command Button (Avionics Slate Glass) */
+.space-cmd-btn-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+  color: #e2e8f0;
+  border: 1px solid #334155;
+  border-top-color: #475569;
+  border-bottom-color: #0f172a;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: all 0.15s ease-out;
+  cursor: pointer;
+  user-select: none;
+}
+.space-cmd-btn-secondary:hover {
+  background: linear-gradient(180deg, rgba(51, 65, 85, 0.9) 0%, rgba(30, 41, 59, 0.95) 100%);
+  border-color: #38bdf8;
+  color: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+  transform: translateY(-1px);
+}
+.space-cmd-btn-secondary:active {
+  transform: translateY(1px);
+  background: rgba(15, 23, 42, 0.98);
+}
+
+/* Avionics Toggle Switch */
+.space-switch-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+/* =========================================================
+   DYNAMIC SPACE CAPSULE BUTTONS & ORBITAL TELEMETRY
+   ========================================================= */
+
+/* Aerodynamic Space Capsule Round Button */
+.space-capsule-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.625rem 1.25rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+}
+
+.space-capsule-btn::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 9999px;
+  padding: 1px;
+  background: linear-gradient(90deg, rgba(6, 182, 212, 0.6), rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.6));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.space-capsule-btn-primary {
+  background: linear-gradient(135deg, rgba(8, 145, 178, 0.95) 0%, rgba(14, 116, 144, 0.9) 100%);
+  color: #f8fafc;
+  box-shadow: 0 0 16px -2px rgba(6, 182, 212, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.space-capsule-btn-primary:hover {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 1) 0%, rgba(8, 145, 178, 0.95) 100%);
+  box-shadow: 0 0 28px rgba(6, 182, 212, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-1.5px) scale(1.02);
+}
+
+.space-capsule-btn-primary:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.4), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.space-capsule-btn-emerald {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.95) 0%, rgba(4, 120, 87, 0.9) 100%);
+  color: #022c22;
+  font-weight: 800;
+  box-shadow: 0 0 16px -2px rgba(16, 185, 129, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.space-capsule-btn-emerald:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 1) 0%, rgba(5, 150, 105, 0.95) 100%);
+  box-shadow: 0 0 28px rgba(16, 185, 129, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-1.5px) scale(1.02);
+}
+
+.space-capsule-btn-glass {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  color: #e2e8f0;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.6);
+}
+
+.space-capsule-btn-glass:hover {
+  background: rgba(30, 41, 59, 0.95);
+  border-color: rgba(56, 189, 248, 0.7);
+  color: #38bdf8;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Astronaut Microgravity Orbital Float Animation */
+@keyframes astronaut-float {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(-6px, -12px) rotate(0.4deg) scale(1.005);
+  }
+  50% {
+    transform: translate(8px, -18px) rotate(-0.3deg) scale(1.01);
+  }
+  75% {
+    transform: translate(12px, -8px) rotate(0.2deg) scale(1.005);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+}
+
+.animate-astronaut-float {
+  animation: astronaut-float 24s ease-in-out infinite;
+}
+
+/* Atmospheric Horizon Glow Breathing */
+@keyframes atmospheric-pulse {
+  0%, 100% {
+    opacity: 0.75;
+    filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.4));
+  }
+  50% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 45px rgba(56, 189, 248, 0.7));
+  }
+}
+
+.animate-atmospheric-pulse {
+  animation: atmospheric-pulse 8s ease-in-out infinite;
+}
+
+/* Subtle Star Twinkle */
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 0.9; transform: scale(1.2); }
+}
+
+.animate-star-1 {
+  animation: star-twinkle 4s ease-in-out infinite;
+}
+.animate-star-2 {
+  animation: star-twinkle 6s ease-in-out infinite 1.5s;
+}
+.animate-star-3 {
+  animation: star-twinkle 5s ease-in-out infinite 3s;
+}
+
+/* Space Radar Scanning Sweep */
+@keyframes radar-sweep {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(1000%);
+    opacity: 0;
+  }
+}
+
+.animate-radar-sweep {
+  animation: radar-sweep 12s linear infinite;
+}
+
+/* Microgravity Astronaut Float & Gentle Attitude Rotation */
+@keyframes astronaut-float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(0.8deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(-0.5deg);
+  }
+  75% {
+    transform: translateY(-4px) rotate(-1.2deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.animate-astronaut-float {
+  animation: astronaut-float 7s ease-in-out infinite;
+}
+
+@keyframes orbit-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+.animate-orbit-pulse {
+  animation: orbit-pulse 6s ease-in-out infinite;
+}
+
+/* ============================================================ */
+/* GLOBAL SPACE VIDEO BACKGROUND & READABILITY LAYERING          */
+/* ============================================================ */
+.live-space-background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.live-space-background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.space-readability-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(ellipse 80% 65% at 50% 50%, rgba(2, 6, 23, 0.02) 0%, rgba(2, 6, 23, 0.25) 55%, rgba(2, 6, 23, 0.80) 100%);
+}
+
+.astra-application {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ============================================================ */
+/* DYNAMIC SPATIAL MODULE CARDS                                 */
+/* ============================================================ */
+@keyframes ecg-dash {
+  0% {
+    stroke-dashoffset: 200;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-ecg {
+  stroke-dasharray: 200;
+  animation: ecg-dash 2.4s linear infinite;
+}
+
+@keyframes neural-bar-1 {
+  0%, 100% { height: 25%; }
+  50% { height: 85%; }
+}
+@keyframes neural-bar-2 {
+  0%, 100% { height: 70%; }
+  50% { height: 30%; }
+}
+@keyframes neural-bar-3 {
+  0%, 100% { height: 40%; }
+  50% { height: 100%; }
+}
+@keyframes neural-bar-4 {
+  0%, 100% { height: 90%; }
+  50% { height: 35%; }
+}
+@keyframes neural-bar-5 {
+  0%, 100% { height: 50%; }
+  50% { height: 80%; }
+}
+
+.animate-neural-1 { animation: neural-bar-1 1.4s ease-in-out infinite; }
+.animate-neural-2 { animation: neural-bar-2 1.8s ease-in-out infinite 0.2s; }
+.animate-neural-3 { animation: neural-bar-3 1.2s ease-in-out infinite 0.4s; }
+.animate-neural-4 { animation: neural-bar-4 1.6s ease-in-out infinite 0.1s; }
+.animate-neural-5 { animation: neural-bar-5 1.5s ease-in-out infinite 0.3s; }
+
+@keyframes radar-scan-sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-radar-scan {
+  animation: radar-scan-sweep 4s linear infinite;
+}
+
+@keyframes holographic-shimmer {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(200%) rotate(25deg); }
+}
+.animate-holographic {
+  animation: holographic-shimmer 3.5s ease-in-out infinite;
+}
+
+/* ============================================================ */
+/* REALISTIC ORBITAL MOTIONS & AURORAL IONIZATION               */
+/* ============================================================ */
+@keyframes iss-orbit-path {
+  0% {
+    transform: translate3d(-60px, 30px, 0) scale(0.75) rotate(-8deg);
+    opacity: 0.2;
+  }
+  15% {
+    opacity: 0.95;
+  }
+  85% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(calc(60vw), -40px, 0) scale(0.92) rotate(4deg);
+    opacity: 0.15;
+  }
+}
+
+.iss-orbit-motion {
+  animation: iss-orbit-path 55s linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes satellite-orbit-path {
+  0% {
+    transform: translate3d(40px, -20px, 0) scale(0.7) rotate(6deg);
+    opacity: 0.3;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(calc(-50vw), 35px, 0) scale(0.85) rotate(-6deg);
+    opacity: 0.2;
+  }
+}
+
+.satellite-orbit-motion {
+  animation: satellite-orbit-path 70s linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes aurora-wave-pulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scaleY(0.9) skewX(-2deg);
+    filter: blur(28px) hue-rotate(0deg);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scaleY(1.15) skewX(2deg);
+    filter: blur(24px) hue-rotate(25deg);
+  }
+}
+
+.aurora-curtain-pulse {
+  animation: aurora-wave-pulse 14s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
+@keyframes lunar-subtle-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.25)) brightness(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 40px rgba(224, 242, 254, 0.4)) brightness(1.04);
+  }
+}
+
+.lunar-glow-motion {
+  animation: lunar-subtle-glow 8s ease-in-out infinite;
+}
+
+
+
